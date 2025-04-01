@@ -8,6 +8,7 @@ import {
 } from "react-native";
 //the useNavigation hook is used to access the navigation prop in a functional component that is not a screen component. It returns the navigation object that can be used to navigate to other screens or perform other navigation actions.
 import { useNavigation } from "@react-navigation/native";
+import MealInformation from "./MealInformation";
 
 function MealItem({
   id,
@@ -38,11 +39,11 @@ function MealItem({
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}min</Text>
-            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealInformation
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -76,17 +77,6 @@ const styles = StyleSheet.create({
   innerContainer: {
     borderRadius: 8,
     overflow: "hidden",
-  },
-  details: {
-    flexDirection: "row",
-    padding: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 10,
-    textAlign: "center",
   },
   buttonPressed: {
     opacity: 0.5,

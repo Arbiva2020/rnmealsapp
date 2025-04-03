@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,30 +23,10 @@ export default function App() {
             contentStyle: { backgroundColor: "#3f2f25" },
           }}
         >
-          <Stack.Screen
-            name="Categories"
-            component={CategoriesScreen}
-            // options={{
-            //   title: "All Categories",
-            // }}
-          />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverviewScreen}
-            // options={{
-            //   title: "Meals",
-            // }}
-          />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailScreen}
-            // options={{
-            //   headerRight: () => {
-            //     return <Button>Tap me!</Button>;
-            //   },
-            // }}
-            //adding a favorite button to the header right in a specific screen
-          />
+          <Stack.Screen name="Categories" component={CategoriesScreen} />
+          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          <Stack.Screen name="Favorites" component={FavoritesScreen} />
         </Stack.Navigator>
         {/* <CategoriesScreen /> */}
       </NavigationContainer>

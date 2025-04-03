@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { MEALS } from "../data/dummy_data";
 import MealInformation from "../components/MealInformation";
+import Subtitle from "../components/MealDetail/Subtitle";
+import List from "../components/MealDetail/List";
 
 function MealDetailScreen({ route }) {
   const mealId = route.params.mealId; //this will get the mealId from the route params.
@@ -18,18 +20,10 @@ function MealDetailScreen({ route }) {
         //the style that we import via props from "MealsInformation.js" to allow more flexability in styiling:
         textStyle={styles.detailText} //this will set the text color to white.
       />
-      <View style={styles.subTitleContainer}>
-        <Text style={styles.subTitle}>Ingedients</Text>
-      </View>
-      {selectedMeal.ingredients.map((ingredient) => (
-        <Text key={ingredient}>{ingredient}</Text>
-      ))}
-      <View style={styles.subTitleContainer}>
-        <Text style={styles.subTitle}>Steps:</Text>
-      </View>
-      {selectedMeal.steps.map((step) => (
-        <Text key={step}>{step}</Text>
-      ))}
+      <Subtitle>Ingredients</Subtitle>
+      <List data={selectedMeal.ingredients}></List>
+      <Subtitle>Steps</Subtitle>
+      <List data={selectedMeal.steps}></List>
     </View>
   );
 }
@@ -50,19 +44,5 @@ const styles = StyleSheet.create({
   },
   detailText: {
     color: "white",
-  },
-  subTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#e2b947",
-    textAlign: "center",
-    marginTop: 8,
-  },
-  subTitleContainer: {
-    padding: 5,
-    borderBottomColor: "#e2b947",
-    borderBottomWidth: 2,
-    marginVertical: 4,
-    marginHorizontal: 24,
   },
 });

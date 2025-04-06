@@ -24,8 +24,8 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Categories" component={CategoriesScreen} />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          <Stack.Screen name="Meals Overview" component={MealsOverviewScreen} />
+          <Stack.Screen name="Meal Detail" component={MealDetailScreen} />
           <Stack.Screen name="Favorites" component={FavoritesScreen} />
         </Stack.Navigator>
         {/* <CategoriesScreen /> */}

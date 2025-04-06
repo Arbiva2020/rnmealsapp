@@ -21,7 +21,7 @@ function MealItem({
   const navigation = useNavigation();
 
   function selectMealHendle() {
-    navigation.navigate("MealDetail", {
+    navigation.navigate("Meal Detail", {
       //add params object:
       mealId: id,
     });

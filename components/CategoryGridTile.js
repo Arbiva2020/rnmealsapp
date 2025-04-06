@@ -1,9 +1,13 @@
 import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
+// import IconButton from "../components/IconButton";
+// import { useLayoutEffect } from "react";
 
 //this is a dumb component that only displays the category tile and handles the press event.
 //The logic for what to do when the tile is pressed is handled in the CategoriesScreen component.
 
-function CategoryGridTile({ title, color, onPressEvent }) {
+function CategoryGridTile({ title, color, onPressEvent, navigation, route }) {
+
+
   return (
     <View style={[styles.gridItem]}>
       <Pressable

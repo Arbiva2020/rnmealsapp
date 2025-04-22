@@ -5,36 +5,55 @@ import {
   Image,
   ScrollView,
   Button,
+  Pressable,
 } from "react-native";
-import { useLayoutEffect } from "react"; //this is used to update the header title when the screen is loaded.
+import {
+  useLayoutEffect,
+  useContext,
+  useEffect,
+  useCallback,
+  useState,
+  use,
+} from "react";
 import { MEALS } from "../data/dummy_data";
 import MealInformation from "../components/MealInformation";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/context/favorites-context";
+import { useNavigation } from "@react-navigation/native";
 
 function MealDetailScreen({ route, navigation }) {
-  const mealId = route.params.mealId; //this will get the mealId from the route params.
+  // const navigation = useNavigation();
+  const favoriteMealsCtx = useContext(FavoritesContext);
 
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId); //this will find the meal object that has the same id as the mealId.
+  const mealId = route.params.mealId;
 
-  function headerButtonPressHandler() {
-    console.log("Header button pressed!"); //this will log to the console when the header button is pressed.
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+
+  function changeFavoritesStatusHandler() {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId);
+    } else {
+      favoriteMealsCtx.addFavorite(mealId);
+    }
   }
 
   useLayoutEffect(() => {
+    console.log("useLayoutEffect triggered, mealIsFavorite:", mealIsFavorite);
     navigation.setOptions({
-      headerRight: () => {
-        return (
-          <IconButton
-            icon="star"
-            color="white"
-            onTapped={headerButtonPressHandler}
-          />
-        );
-      },
+      headerRight: () => (
+        <IconButton
+          title="Tap me!"
+          icon={mealIsFavorite ? "star" : "star-outline"}
+          color="white"
+          onPress={changeFavoritesStatusHandler}
+        />
+      ),
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, changeFavoritesStatusHandler]); //this will set the header button to the navigation options. The second parameter is an array of dependencies that will trigger the useLayoutEffect when changed.
 
   return (
     <ScrollView style={styles.rootContainer}>

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 //the useNavigation hook is used to access the navigation prop in a functional component that is not a screen component. It returns the navigation object that can be used to navigate to other screens or perform other navigation actions.
 import { useNavigation } from "@react-navigation/native";
-import MealInformation from "./MealInformation";
+import MealInformation from "../MealInformation";
 
 function MealItem({
   id,
@@ -22,7 +22,7 @@ function MealItem({
 
   function selectMealHendle() {
     navigation.navigate("Meal Detail", {
-      //add params object:
+      //add params object as a second parameter after destenation - more information can be found in the react navigation documentation: https://reactnavigation.org/docs/params/
       mealId: id,
     });
   }

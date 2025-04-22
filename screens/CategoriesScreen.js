@@ -7,7 +7,7 @@ import { useLayoutEffect } from "react";
 function CategoriesScreen({ navigation, route }) {
   function headerButtonPressHandler() {
     navigation.navigate("Favorites");
-    console.log("Header button pressed!"); //this will log to the console when the header button is pressed.
+    console.log("Header button pressed!");
   }
 
   useLayoutEffect(() => {
@@ -15,9 +15,10 @@ function CategoriesScreen({ navigation, route }) {
       headerRight: () => {
         return (
           <IconButton
-            icon="star"
+            icon="heart"
             color="white"
-            onTapped={headerButtonPressHandler}
+            onPress={headerButtonPressHandler}
+            // onTapped={headerButtonPressHandler}
           />
         );
       },

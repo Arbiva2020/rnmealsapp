@@ -1,13 +1,21 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { useContext } from "react";
+//instead of useContext, we will switch to useSelector for working with Redux:
+// import { useContext } from "react";
+import { useSelector } from "react-redux";
 import MealsList from "../components/MealsList/MealsList";
 import { FavoritesContext } from "../store/context/favorites-context";
 import { MEALS } from "../data/dummy_data";
 
 function FavoritesScreen({ navigation }) {
-  const favoriteMealsCtx = useContext(FavoritesContext); //this will get the context from the FavoritesContext.js file.
+  // const favoriteMealsCtx = useContext(FavoritesContext); //this will be used if we are using Context API.
+  const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids); //this will get the ids from the redux store.
+
+  // const favoriteMeals = MEALS.filter((meal) =>
+  //   favoriteMealsCtx.ids.includes(meal.id)
+  // );
+
   const favoriteMeals = MEALS.filter((meal) =>
-    favoriteMealsCtx.ids.includes(meal.id)
+    favoriteMealIds.includes(meal.id)
   );
 
   if (favoriteMeals.length === 0) {

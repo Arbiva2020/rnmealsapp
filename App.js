@@ -11,8 +11,8 @@ import { Ionicons } from "@expo/vector-icons";
 import FavoritesContextProvider from "./store/context/favorites-context";
 //instead oc Context, we can use Redux:
 import { Provider } from "react-redux";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { store } from "./store/redux/store";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
